@@ -62,6 +62,9 @@ body {
 }
 
 @media (max-width: 600px) {
+  body{
+    height: auto;
+  }
   .container {
     width: 90%;
     height: 40%;
