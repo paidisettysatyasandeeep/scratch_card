@@ -9,12 +9,10 @@ const init = () => {
   context.fillRect(0, 0, 200, 200);
 };
 
-// Initially mouse X and mouse Y positions are 0
 let mouseX = 0;
 let mouseY = 0;
 let isDragged = false;
 
-// Events for touch and mouse
 let events = {
   mouse: {
     down: "mousedown",
@@ -65,7 +63,6 @@ const showCursor = () => {
   canvas.style.cursor = "default";
 };
 
-// Start Scratch
 canvas.addEventListener(events[deviceType].down, (event) => {
   isDragged = true;
   hideCursor();
@@ -74,7 +71,6 @@ canvas.addEventListener(events[deviceType].down, (event) => {
   scratch(mouseX, mouseY);
 });
 
-// Mousemove/touchmove
 canvas.addEventListener(events[deviceType].move, (event) => {
   if (!isTouchDevice()) {
     event.preventDefault();
@@ -85,13 +81,11 @@ canvas.addEventListener(events[deviceType].move, (event) => {
   }
 });
 
-// Stop drawing
 canvas.addEventListener(events[deviceType].up, () => {
   isDragged = false;
   showCursor();
 });
 
-// If the mouse leaves the square
 canvas.addEventListener("mouseleave", () => {
   isDragged = false;
   showCursor();
@@ -106,13 +100,11 @@ const scratch = (x, y) => {
   context.fill();
 };
 
-// Function to generate a random number between 1 and 20 and store it in local storage
 const generateAndStoreRandomNumber = () => {
   const randomNumber = Math.floor(Math.random() * 10) + 1;
   localStorage.setItem("randomNumber", randomNumber);
 };
 
-// Function to update the content of the span element with the stored random number
 const updateRandomAmount = () => {
   const randomAmountElement = document.getElementById("randomAmount");
   const storedRandomNumber = localStorage.getItem("randomNumber");
