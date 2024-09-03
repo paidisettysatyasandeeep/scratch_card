@@ -31,7 +31,6 @@ let deviceType = "";
 // Detect touch device
 const isTouchDevice = () => {
   try {
-    // We try to create TouchEvent. It would fail for desktops and throw an error.
     document.createEvent("TouchEvent");
     deviceType = "touch";
     return true;
@@ -41,11 +40,9 @@ const isTouchDevice = () => {
   }
 };
 
-// Get left and top of canvas
 let rectLeft = canvas.getBoundingClientRect().left;
 let rectTop = canvas.getBoundingClientRect().top;
 
-// Exact x and y position of mouse/touch
 const getXY = (e) => {
   mouseX = (!isTouchDevice() ? e.pageX : e.touches[0].pageX) - rectLeft;
   mouseY = (!isTouchDevice() ? e.pageY : e.touches[0].pageY) - rectTop;
@@ -53,12 +50,10 @@ const getXY = (e) => {
 
 isTouchDevice();
 
-// Function to hide the cursor
 const hideCursor = () => {
   canvas.style.cursor = "none";
 };
 
-// Function to show the cursor
 const showCursor = () => {
   canvas.style.cursor = "default";
 };
@@ -92,16 +87,14 @@ canvas.addEventListener("mouseleave", () => {
 });
 
 const scratch = (x, y) => {
-  // Destination-out draws new shapes behind the existing canvas content
   context.globalCompositeOperation = "destination-out";
   context.beginPath();
-  // Arc makes a circle - x, y, radius, start angle, end angle
   context.arc(x, y, 12, 0, 2 * Math.PI);
   context.fill();
 };
 
 const generateAndStoreRandomNumber = () => {
-  const randomNumber = Math.floor(Math.random() * 10) + 1;
+  const randomNumber = Math.floor(Math.random() * 50) + 1;
   localStorage.setItem("randomNumber", randomNumber);
 };
 
